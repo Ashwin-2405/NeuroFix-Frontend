@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import apiClient from '../api/axiosConfig';
 import './Dashboard.css';
-import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
+import { useAuth } from '../context/AuthContext';
 
 interface LearningPlan {
   id: number;
@@ -15,16 +15,15 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { user, logout } = useAuth(); // Get user and logout from context
+  const { user, logout } = useAuth();
 
-  // ... (Modal state remains the same)
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newPlanTitle, setNewPlanTitle] = useState('');
   const [newPlanDescription, setNewPlanDescription] = useState('');
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentPlan, setCurrentPlan] = useState<LearningPlan | null>(null);
 
-  const fetchLearningPlans = async () => { /* ... function remains the same */ 
+  const fetchLearningPlans = async () => {
     try {
       setLoading(true);
       const response = await apiClient.get('/api/learning-plans/');
@@ -42,12 +41,11 @@ const Dashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    logout(); // Use the logout function from context
+    logout();
     navigate('/login');
   };
   
-  // ... (Create, Update, Delete functions remain the same)
-  const handleCreatePlan = async (e: React.FormEvent) => { /* ... */ 
+  const handleCreatePlan = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await apiClient.post('/api/learning-plans/', {
@@ -63,7 +61,8 @@ const Dashboard = () => {
       setError('Could not create the learning plan.');
     }
   };
-  const handleDeletePlan = async (planId: number) => { /* ... */ 
+
+  const handleDeletePlan = async (planId: number) => {
     if (window.confirm('Are you sure you want to delete this plan?')) {
       try {
         await apiClient.delete(`/api/learning-plans/${planId}/`);
@@ -74,11 +73,13 @@ const Dashboard = () => {
       }
     }
   };
-  const openEditModal = (plan: LearningPlan) => { /* ... */ 
+
+  const openEditModal = (plan: LearningPlan) => {
     setCurrentPlan(plan);
     setIsEditModalOpen(true);
   };
-  const handleUpdatePlan = async (e: React.FormEvent) => { /* ... */ 
+
+  const handleUpdatePlan = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentPlan) return;
     try {
@@ -97,8 +98,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* Modals remain the same */}
-      {isCreateModalOpen && ( /* ... */ 
+      {isCreateModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h2>Create New Learning Plan</h2>
@@ -119,7 +119,8 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-      {isEditModalOpen && currentPlan && ( /* ... */ 
+
+      {isEditModalOpen && currentPlan && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h2>Edit Learning Plan</h2>
@@ -145,20 +146,17 @@ const Dashboard = () => {
         <header className="dashboard-header">
           <h1>My Learning Plans</h1>
           <div className="header-actions">
-            {/* --- ROLE-BASED UI --- */}
             {user && user.role === 'GUIDE' && (
               <button onClick={() => setIsCreateModalOpen(true)} className="button-primary">
                 + Create New Plan
               </button>
             )}
-            {/* --------------------- */}
             <button onClick={handleLogout} className="logout-button">Logout</button>
           </div>
         </header>
         
         <main className="dashboard-content">
-          {/* ... content remains the same ... */
-          loading && <p>Loading plans...</p>}
+          {loading && <p>Loading plans...</p>}
           {error && <p className="error-message">{error}</p>}
           
           {!loading && !error && (
@@ -183,10 +181,9 @@ const Dashboard = () => {
                   <h3>No learning plans found.</h3>
                   <p>Create one to get started!</p>
                 </div>
-              )
-            }
-          </div>
-          )
+              )}
+            </div>
+          )}
         </main>
       </div>
     </>
