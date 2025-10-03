@@ -4,7 +4,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
-import Dashboard from './components/Dashboard'; // Check this line
+import Dashboard from './components/Dashboard';
+import PlanDetail from './components/PlanDetail'; // 1. Import the new component
 
 function App() {
   return (
@@ -15,8 +16,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Add the new Dashboard route */}
+        {/* Main Application Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
+        {/* 2. Add the new dynamic route for plan details */}
+        <Route path="/dashboard/plan/:planId" element={<PlanDetail />} />
 
         {/* Default route redirects to login */}
         <Route path="*" element={<Navigate to="/login" />} />

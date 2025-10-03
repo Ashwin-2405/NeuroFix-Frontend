@@ -22,12 +22,17 @@
   margin: 0;
 }
 
+.header-actions {
+  display: flex;
+  gap: 15px;
+}
+
 .logout-button {
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   color: white;
-  background-color: #e74c3c; /* A distinct red for logout */
+  background-color: #e74c3c;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -43,7 +48,7 @@
   text-align: center;
 }
 
-/* Learning Plans List */
+/* Learning Plans List & Empty State */
 .plans-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -51,17 +56,33 @@
   text-align: left;
 }
 
-/* Individual Plan Card */
+.empty-state {
+  margin-top: 50px;
+  color: #7f8c8d;
+}
+
+/* Modified Plan Card */
 .plan-card {
   background-color: white;
   border-radius: 12px;
-  padding: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card-link {
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1; 
+}
+
+.plan-card-content {
+  padding: 25px;
 }
 
 .plan-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Corrected: Added closing parenthesis */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
@@ -77,7 +98,143 @@
   line-height: 1.6;
 }
 
-/* Error Message (re-used from other components) */
+/* New Plan Card Actions */
+.plan-card-actions {
+  display: flex;
+  gap: 10px;
+  padding: 0 25px 25px 25px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto; 
+  padding-top: 20px;
+}
+
+.button-edit,
+.button-delete {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-edit {
+  background-color: #ecf0f1;
+  color: #34495e;
+}
+
+.button-edit:hover {
+  background-color: #bdc3c7;
+}
+
+.button-delete {
+  background-color: #fbeeeea1;
+  color: #c0392b;
+}
+
+.button-delete:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-content h2 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Reusable Button Styles */
+.button-primary {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-primary:hover {
+  background-color: #2980b9;
+}
+
+.button-secondary {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #34495e;
+  background-color: #ecf0f1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-secondary:hover {
+  background-color: #bdc3c7;
+}
+
+/* Error Message */
 .error-message {
   color: #e74c3c;
   font-weight: bold;
