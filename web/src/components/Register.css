@@ -36,7 +36,7 @@
 }
 
 .input-group {
-  position: relative; /* This is needed to position the icon */
+  position: relative;
   margin-bottom: 20px;
 }
 
@@ -49,7 +49,6 @@
   box-sizing: border-box;
 }
 
-/* New styles for the eye icon */
 .password-toggle-icon {
   position: absolute;
   right: 15px;
@@ -58,6 +57,44 @@
   color: #aaa;
   cursor: pointer;
 }
+
+/* New styles for the role selector */
+.role-selector {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.role-selector label {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.role-options {
+  display: flex;
+  gap: 10px;
+}
+
+.role-options button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.role-options button.active {
+  background-color: #27ae60;
+  color: white;
+  border-color: #27ae60;
+}
+/* End of new styles */
 
 .register-button-primary {
   padding: 15px;
@@ -86,4 +123,17 @@
   color: #3498db;
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Added for error/success messages */
+.error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.success-message {
+  color: #27ae60;
+  margin-bottom: 15px;
+  font-weight: bold;
 }

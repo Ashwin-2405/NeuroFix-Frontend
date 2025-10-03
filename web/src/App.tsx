@@ -3,22 +3,22 @@ import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
-import ForgotPassword from './components/ForgotPassword'; // Import the new component
+import ForgotPassword from './components/ForgotPassword';
+import Dashboard from './components/Dashboard'; // Check this line
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        {/* Route for the login page */}
+        {/* Authentication Routes */}
         <Route path="/login" element={<Login />} />
-
-        {/* Route for the registration page */}
         <Route path="/register" element={<Register />} />
-
-        {/* Route for the forgot password page */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Any other URL will automatically redirect to the login page */}
+        {/* Add the new Dashboard route */}
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Default route redirects to login */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
